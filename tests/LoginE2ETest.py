@@ -31,3 +31,10 @@ class LoginE2ETest(BaseTest):
         page.open()
         page.login("lihuongthunguyen", "123456@utc")
         assert "Tài khoản không đúng" in page.get_error_message()
+
+    def test_tc5_login_success_with_remember_me(self):
+        page = LoginPage(self.driver)
+        page.open()
+        page.login("huongngt", "123456@utc", remember_me=True)
+        page.wait_for_url_changes(page.URL)
+        assert "dashboard" in page.get_current_url() or "home" in page.get_current_url()
