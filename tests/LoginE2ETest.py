@@ -25,3 +25,9 @@ class LoginE2ETest(BaseTest):
         page.open()
         page.login("huongngt", "utc@235")
         assert "Tài khoản không đúng" in page.get_error_message()
+
+    def test_tc4_wrong_user_correct_pass(self):
+        page = LoginPage(self.driver)
+        page.open()
+        page.login("lihuongthunguyen", "123456@utc")
+        assert "Tài khoản không đúng" in page.get_error_message()
