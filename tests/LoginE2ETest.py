@@ -86,3 +86,10 @@ class LoginE2ETest(BaseTest):
             page.login("huongngt", f"wrong_pass_{i}")
             time.sleep(1)
         assert len(page.get_error_message()) > 0
+
+    def test_tc13_mobile_responsive(self):
+        self.driver.set_window_size(375, 812)
+        page = LoginPage(self.driver)
+        page.open()
+        assert page.get_username_element().is_displayed()
+        self.driver.maximize_window()
