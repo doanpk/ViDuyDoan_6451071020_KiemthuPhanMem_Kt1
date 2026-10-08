@@ -38,3 +38,10 @@ class LoginE2ETest(BaseTest):
         page.login("huongngt", "123456@utc", remember_me=True)
         page.wait_for_url_changes(page.URL)
         assert "dashboard" in page.get_current_url() or "home" in page.get_current_url()
+
+    def test_tc6_login_success_without_remember_me(self):
+        page = LoginPage(self.driver)
+        page.open()
+        page.login("huongngt", "123456@utc", remember_me=False)
+        page.wait_for_url_changes(page.URL)
+        assert "dashboard" in page.get_current_url() or "home" in page.get_current_url()
