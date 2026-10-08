@@ -45,3 +45,11 @@ class LoginE2ETest(BaseTest):
         page.login("huongngt", "123456@utc", remember_me=False)
         page.wait_for_url_changes(page.URL)
         assert "dashboard" in page.get_current_url() or "home" in page.get_current_url()
+
+    def test_tc7_login_with_utc_email(self):
+        page = LoginPage(self.driver)
+        page.open()
+        page.click_login_with_email_utc()
+        page.wait_for_url_changes(page.URL)
+        url = page.get_current_url()
+        assert "sso" in url or page.URL not in url
