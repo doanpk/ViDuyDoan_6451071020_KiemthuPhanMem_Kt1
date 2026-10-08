@@ -53,3 +53,11 @@ class LoginE2ETest(BaseTest):
         page.wait_for_url_changes(page.URL)
         url = page.get_current_url()
         assert "sso" in url or page.URL not in url
+
+    def test_tc8_forgot_password(self):
+        page = LoginPage(self.driver)
+        page.open()
+        page.click_forgot_password()
+        page.wait_for_url_changes(page.URL)
+        url = page.get_current_url()
+        assert "forgot" in url or "recover" in url
