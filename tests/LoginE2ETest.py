@@ -19,3 +19,9 @@ class LoginE2ETest(BaseTest):
         page.open()
         page.login("huongngt", "")
         assert "Bạn chưa nhập mật khẩu" in page.get_error_message()
+
+    def test_tc3_correct_user_wrong_pass(self):
+        page = LoginPage(self.driver)
+        page.open()
+        page.login("huongngt", "utc@235")
+        assert "Tài khoản không đúng" in page.get_error_message()
