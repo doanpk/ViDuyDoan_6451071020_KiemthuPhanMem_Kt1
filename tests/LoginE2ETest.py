@@ -67,3 +67,8 @@ class LoginE2ETest(BaseTest):
         page.open()
         page.login("' OR '1'='1", "any_password")
         assert "Tài khoản không đúng" in page.get_error_message()
+
+    def test_tc10_password_is_masked(self):
+        page = LoginPage(self.driver)
+        page.open()
+        assert page.is_password_masked()
