@@ -61,3 +61,9 @@ class LoginE2ETest(BaseTest):
         page.wait_for_url_changes(page.URL)
         url = page.get_current_url()
         assert "forgot" in url or "recover" in url
+
+    def test_tc9_sql_injection(self):
+        page = LoginPage(self.driver)
+        page.open()
+        page.login("' OR '1'='1", "any_password")
+        assert "Tài khoản không đúng" in page.get_error_message()
