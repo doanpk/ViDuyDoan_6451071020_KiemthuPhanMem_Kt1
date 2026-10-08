@@ -13,3 +13,9 @@ class LoginE2ETest(BaseTest):
         page.open()
         page.login("", "1256")
         assert "Bạn chưa nhập tên đăng nhập" in page.get_error_message()
+
+    def test_tc2_empty_password(self):
+        page = LoginPage(self.driver)
+        page.open()
+        page.login("huongngt", "")
+        assert "Bạn chưa nhập mật khẩu" in page.get_error_message()
