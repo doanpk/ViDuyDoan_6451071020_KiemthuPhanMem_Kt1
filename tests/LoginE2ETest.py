@@ -93,3 +93,12 @@ class LoginE2ETest(BaseTest):
         page.open()
         assert page.get_username_element().is_displayed()
         self.driver.maximize_window()
+
+    def test_tc14_help_center_link(self):
+        page = LoginPage(self.driver)
+        page.open()
+        page.click_help_center()
+        if len(self.driver.window_handles) > 1:
+            self.driver.switch_to.window(self.driver.window_handles[1])
+        page.wait_for_url_changes(page.URL)
+        assert page.get_current_url() != page.URL
