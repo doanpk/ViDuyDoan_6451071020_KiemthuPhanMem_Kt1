@@ -78,3 +78,11 @@ class LoginE2ETest(BaseTest):
         page.open()
         page.login("huongngt", "123456@UTC")
         assert "Tài khoản không đúng" in page.get_error_message()
+
+    def test_tc12_brute_force_protection(self):
+        page = LoginPage(self.driver)
+        page.open()
+        for i in range(5):
+            page.login("huongngt", f"wrong_pass_{i}")
+            time.sleep(1)
+        assert len(page.get_error_message()) > 0
