@@ -102,3 +102,12 @@ class LoginE2ETest(BaseTest):
             self.driver.switch_to.window(self.driver.window_handles[1])
         page.wait_for_url_changes(page.URL)
         assert page.get_current_url() != page.URL
+
+    def test_tc15_feedback_link(self):
+        page = LoginPage(self.driver)
+        page.open()
+        page.click_feedback()
+        if len(self.driver.window_handles) > 1:
+            self.driver.switch_to.window(self.driver.window_handles[1])
+        page.wait_for_url_changes(page.URL)
+        assert page.get_current_url() != page.URL
